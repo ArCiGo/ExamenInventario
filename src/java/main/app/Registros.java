@@ -27,7 +27,7 @@ public class Registros {
 
     public void setCantidad(int cantidad) {
         if (cantidad >= 0) {
-        this.cantidad = cantidad;
+            this.cantidad = cantidad;
         } else {
             this.cantidad = 0;
             this.cantFalt += Math.abs(cantidad);

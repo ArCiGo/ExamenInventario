@@ -3,11 +3,6 @@
  * Roberto Mestas Palafox
  * Erik Jesús Delgado Hernández
  * Armando Cifuentes González
- * 
- * Running the project
- * In console execute this: javac -d ./out/ -sourcepath main/app -cp out/ src/java/main/app/*.java
- * where * means the classes contained in the project
- * and then execute this: java -cp ./out/ main.app.Main
  */
 
 package main.app;
@@ -25,7 +20,7 @@ public class Main {
         priorityQueue.add(new Cliente("Carlos", 3, 40, 40, 0, 0, 0));
         priorityQueue.add(new Cliente("Isaac", 15, 20, 0, 0, 0, 0));
         priorityQueue.add(new Cliente("Diego", 14, 100, 100, 100, 100, 0));
-        priorityQueue.add(new Cliente("Blanca", 3, 20, 20, 20, 20, 20));
+        //priorityQueue.add(new Cliente("Blanca", 3, 20, 20, 20, 20, 20));
 
         inventario();
         
@@ -43,13 +38,16 @@ public class Main {
             actualizarInventario(cliente);
             inventario();
 
-            if (inv.getTable().get("Laptop").getCantFalt() > 0) {
+            if (inv.getTable().get("Laptop").getCantFalt() > 0 || inv.getTable().get("Monitor").getCantFalt() > 0 
+                    || inv.getTable().get("Teclado").getCantFalt() > 0 || inv.getTable().get("Mouse").getCantFalt() > 0
+                    || inv.getTable().get("Enfriador").getCantFalt() > 0) {
                 dias += 7;
             } else {
                 dias += 2;
             }
 
             System.out.println("\nDIAS ESTIMADOS PARA LA ENTREGA: " + dias + " dias");
+            
             if (cliente.getDias() < dias) {
                 System.out.println("Disculpe la tardanza, se le aplicara un 5% descuento a su pedido" +
                 "\nPRECIO TOTAL NUEVO: " + (cliente.getTotal() - (cliente.getTotal() * 0.05)) );
@@ -58,21 +56,14 @@ public class Main {
     }
 
     public static void actualizarInventario(Cliente cliente) {
-
-        inv.getTable().get("Laptop").setCantidad(inv.getTable().get("Laptop").getCantidad()
-             - cliente.getLaptops());
-        inv.getTable().get("Monitor").setCantidad( inv.getTable().get("Monitor").getCantidad()
-            - cliente.getMonitores());
-        inv.getTable().get("Teclado").setCantidad( inv.getTable().get("Teclado").getCantidad()
-            - cliente.getTeclados());
-        inv.getTable().get("Mouse").setCantidad( inv.getTable().get("Mouse").getCantidad()
-            - cliente.getMouse());
-        inv.getTable().get("Enfriador").setCantidad( inv.getTable().get("Enfriador").getCantidad()
-            - cliente.getEnfriadores());
+        inv.getTable().get("Laptop").setCantidad(inv.getTable().get("Laptop").getCantidad() - cliente.getLaptops());
+        inv.getTable().get("Monitor").setCantidad( inv.getTable().get("Monitor").getCantidad() - cliente.getMonitores());
+        inv.getTable().get("Teclado").setCantidad( inv.getTable().get("Teclado").getCantidad() - cliente.getTeclados());
+        inv.getTable().get("Mouse").setCantidad( inv.getTable().get("Mouse").getCantidad() - cliente.getMouse());
+        inv.getTable().get("Enfriador").setCantidad( inv.getTable().get("Enfriador").getCantidad() - cliente.getEnfriadores());
     }
 
     public static void inventario() {
-
         if (inv.getTable().get("Laptop").getCantFalt() > 0) {
             System.out.println("\nINVENTARIO\nNo hay suficientes laptops en el inventario");
             System.out.println("Laptops faltantes: " + inv.getTable().get("Laptop").getCantFalt());
@@ -108,5 +99,4 @@ public class Main {
             System.out.println("Enfriadores: " + inv.getTable().get("Enfriador").getCantidad());
         }
     }
-
 }

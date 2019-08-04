@@ -44,8 +44,7 @@ public class Cliente implements Comparable<Cliente> {
 		this.enfriador = new Producto("Enfriador", "Enfriadores Inc", "F4300", enfriadores);
 		
 		//Calculando subtotal general
-		this.subtotal = laptop.getSubtotal() + monitor.getSubtotal() + teclado.getSubtotal() 
-			+ mouse.getSubtotal() + enfriador.getSubtotal();
+		this.subtotal = laptop.getSubtotal() + monitor.getSubtotal() + teclado.getSubtotal() + mouse.getSubtotal() + enfriador.getSubtotal();
 		
 		//Calculando Total (incluyendo descuentos e IVA)
 		if(this.subtotal >= 100000.00 && this.subtotal < 200000.00) {
@@ -55,11 +54,6 @@ public class Cliente implements Comparable<Cliente> {
 		} else {
 			this.total = this.subtotal + (this.subtotal * 0.16);
 		}
-
-		// suponiendo que nuestra fecha maxima de entrega son tres dias
-		/*if(this.dias + 5 > 5) {
-			this.total = this.total - (this.total * 0.05);
-		}*/
 	}
 
 	public void setNombre(String nombre) {
